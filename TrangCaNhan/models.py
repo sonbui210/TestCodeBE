@@ -1,6 +1,6 @@
 from django.db import models
 #sửa cái này để test git pull
-
+#test user global
 # Create your models here.
 class ThongTinCaNhan(models.Model):
     ChoiceGioiTinh = (
