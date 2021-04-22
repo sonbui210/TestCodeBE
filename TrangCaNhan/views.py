@@ -30,7 +30,18 @@ class BantinViewset(viewsets.ModelViewSet):
     #     NoiDung=bantin.data['NoiDung']
     #     cs = BanTin.objects.create(IDBanTin=IDBanTin, NoiDung=NoiDung)
     #     return Response(data=[cs.id, cs.IDBanTin, cs.TenNguoiPost, cs.NoiDung], status=status.HTTP_200_OK)
-
+    def create(self, request, *args, **kwargs):
+        mydata = BantinviewsetSerializer(data=request.data)
+        if not mydata.is_valid():
+            return Response("Sai du lieu", status=status.HTTP_400_BAD_REQUEST)
+        pk = mydata.data["IDBanTin"]
+        Thongtin = ThongTinCaNhan.objects.get(IDNguoiDung=pk)
+        TenNguoiPost = Thongtin.HoTen
+        # IDBanTin=Thongtin
+        # TenNguoiPost=Thongtin.objects.get(IDNguoiDung=pk)
+        # NoiDung = mydata.data["NoiDung"]
+        # cs = BanTin.objects.create(IDBanTin=IDBanTin, TenNguoiPost=TenNguoiPost, NoiDung=NoiDung)
+        return Response(TenNguoiPost, status=status.HTTP_200_OK)
 
 # class BantinViewset(viewsets.ViewSet):
 #
