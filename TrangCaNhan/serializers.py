@@ -10,14 +10,15 @@ class ThongtincanhanSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BantinviewsetSerializer(serializers.ModelSerializer):
+    # TenNguoiPost = ThongTinCaNhan.objects.values('HoTen')
     class Meta:
         model = BanTin
         fields = '__all__'
 
 class BantinSerializer(serializers.Serializer):
-    IDBanTin1 = serializers.CharField(max_length=20)
-    # TenNguoiPost1 = serializers.CharField(max_length=80)
-    NoiDung1 = serializers.CharField(max_length=5000)
+    IDBanTin = serializers.CharField(max_length=20)
+    TenNguoiPost = ThongTinCaNhan.objects.values('HoTen')
+    NoiDung= serializers.CharField(max_length=5000)
 
 class BinhluanSerializers(serializers.ModelSerializer):
 

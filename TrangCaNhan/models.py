@@ -18,10 +18,11 @@ class ThongTinCaNhan(models.Model):
     def __str__(self):
         return self.IDNguoiDung
 
-class BanTin(ThongTinCaNhan):
-    IDBanTin = models.CharField(max_length=20, null=False)
-    TenNguoiPost = ThongTinCaNhan.objects.get(HoTen)
-    TimeCreate = models.DateTimeField(auto_now=True)
+class BanTin(models.Model):
+    IDBanTin = models.ForeignKey(ThongTinCaNhan, on_delete=models.CASCADE)
+    # TenNguoiPost = ThongTinCaNhan.objects.values('HoTen')
+    TenNguoiPost = models.CharField(max_length=20,  null=True)
+    TimeCreateBanTin = models.DateTimeField(auto_now=True)
     NoiDung = models.CharField(max_length=5000, default='', null=True)
     # def __str__(self):
     # class Meta:

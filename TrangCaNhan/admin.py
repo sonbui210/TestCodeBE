@@ -7,7 +7,7 @@ class ThontincanhanAdmin(admin.ModelAdmin):
 
 
 class BantinAdmin(admin.ModelAdmin):
-    list_display = ('IDBanTin', 'TenNguoiPost', 'TimeCreate', 'NoiDung' )
+    list_display = ('IDBanTin', 'TenNguoiPost', 'TimeCreateBanTin', 'NoiDung' )
 
 class BinhluanAdmin(admin.ModelAdmin):
     list_display = ('IDBinhLuan', 'NguoiBinhLuan')
