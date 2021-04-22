@@ -1,4 +1,5 @@
 from django.db import models
+#sửa cái này để test git pull
 
 # Create your models here.
 class ThongTinCaNhan(models.Model):
