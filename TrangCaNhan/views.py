@@ -39,7 +39,7 @@ class BantinViewset(viewsets.ModelViewSet):
         Thongtin = ThongTinCaNhan.objects.get(pk=pkl)
         TenNguoiPost = ThongTinCaNhan.objects.filter(id=pkl).order_by('HoTen')
         hellokitty = serializers.serialize('json', TenNguoiPost)
-        # TenNguoiPost = ThongtincanhanSerializer.data['HoTen']2
+        # TenNguoiPost = ThongtincanhanSerializer.data['HoTen']2ssss
 
         # TenNguoiPost = serializer.data['HoTen']
         # IDBanTin=Thongtin
