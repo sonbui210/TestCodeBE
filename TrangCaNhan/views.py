@@ -3,6 +3,7 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ModelViewSet
+from django.core import serializers
 
 
 
@@ -34,14 +35,18 @@ class BantinViewset(viewsets.ModelViewSet):
         mydata = BantinviewsetSerializer(data=request.data)
         if not mydata.is_valid():
             return Response("Sai du lieu", status=status.HTTP_400_BAD_REQUEST)
-        pk = mydata.data["IDBanTin"]
-        Thongtin = ThongTinCaNhan.objects.get(IDNguoiDung=pk)
-        TenNguoiPost = Thongtin.HoTen
+        pkl = mydata.data["IDBanTin"]
+        Thongtin = ThongTinCaNhan.objects.get(pk=pkl)
+        TenNguoiPost = ThongTinCaNhan.objects.filter(id=pkl).order_by('HoTen')
+        hellokitty = serializers.serialize('json', TenNguoiPost)
+        # TenNguoiPost = ThongtincanhanSerializer.data['HoTen']
+
+        # TenNguoiPost = serializer.data['HoTen']
         # IDBanTin=Thongtin
         # TenNguoiPost=Thongtin.objects.get(IDNguoiDung=pk)
         # NoiDung = mydata.data["NoiDung"]
         # cs = BanTin.objects.create(IDBanTin=IDBanTin, TenNguoiPost=TenNguoiPost, NoiDung=NoiDung)
-        return Response(TenNguoiPost, status=status.HTTP_200_OK)
+        return Response(hellokitty, status=status.HTTP_200_OK)
 
 # class BantinViewset(viewsets.ViewSet):
 #
